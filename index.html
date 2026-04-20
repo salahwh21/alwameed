@@ -1,1 +1,565 @@
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImFyIiBkaXI9InJ0bCIgZGF0YS10aGVtZT0ibGlnaHQiPgo8aGVhZD4KPG1ldGEgY2hhcnNldD0iVVRGLTgiPgo8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+Cjx0aXRsZT7Yp9mE2YjZhdmK2Ygg2YTYqtmI2LXZiteK2YQg2KfZhNi32YTYqNin2KQ8L3RpdGxlPgo8bGluayByZWw9InByZWNvbm5lY3QiIGhyZWY9Imh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20iPgo8bGluayByZWw9InByZWNvbm5lY3QiIGhyZWY9Imh0dHBzOi8vZm9udHMuZ3N0YXRpYy5jb20iIGNyb3Nzb3JpZ2luPgo8bGluayBocmVmPSJodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUNhaXJvOndnaHRANDAwOzYwMDs3MDA7OTAwJmRpc3BsYXk9c3dhcCIgcmVsPSJzdHlsZXNoZWV0Ij4KPHByZWxvYWQgYXM9ImZvbnQiPjwvcHJlbG9hZD4K
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الوميض لتوصيل الطلبات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f8f9fa;
+      color: #1a1a2e;
+      direction: rtl;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #e94560, #f5a623);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .logo-text {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #a0aec0;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #cbd5e0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e94560;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 60%, #16213e 100%);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(233,69,96,0.2);
+      border: 1px solid rgba(233,69,96,0.4);
+      color: #e94560;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 .highlight {
+      color: #e94560;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #a0aec0;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    /* ===== STATS ===== */
+    .stats {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #e94560;
+    }
+
+    .stat-item p {
+      font-size: 0.9rem;
+      color: #718096;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    /* ===== SERVICES ===== */
+    .section {
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 900;
+      color: #1a1a2e;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+      color: #718096;
+      font-size: 1rem;
+    }
+
+    .section-title .divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(135deg, #e94560, #f5a623);
+      border-radius: 2px;
+      margin: 1rem auto 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+      border: 1px solid #edf2f7;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .icon-red    { background: rgba(233,69,96,0.1); }
+    .icon-blue   { background: rgba(66,153,225,0.1); }
+    .icon-green  { background: rgba(72,187,120,0.1); }
+    .icon-yellow { background: rgba(245,166,35,0.1); }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: #718096;
+      line-height: 1.7;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-section {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+      color: #fff;
+    }
+
+    .how-section .section-title h2 {
+      color: #fff;
+    }
+
+    .how-section .section-title p {
+      color: #a0aec0;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .step {
+      position: relative;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #e94560, #f5a623);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin: 0 auto 1rem;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: #a0aec0;
+      line-height: 1.7;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #e94560 0%, #f5a623 100%);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .btn-white {
+      background: #fff;
+      color: #e94560;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a1a2e;
+      color: #a0aec0;
+      text-align: center;
+      padding: 2rem;
+      margin-top: auto;
+    }
+
+    footer .footer-brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    footer p {
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: #e94560;
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { display: none; }
+
+      .hero {
+        padding: 3.5rem 1.5rem 4rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text">
+        الوميض
+        <span>لتوصيل الطلبات</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#services">خدماتنا</a>
+      <a href="#how">كيف نعمل</a>
+      <a href="https://wa.me/962793204777">تواصل معنا</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🚀 توصيل سريع وموثوق</div>
+    <h1>
+      <span class="highlight">الوميض</span><br>
+      لتوصيل الطلبات
+    </h1>
+    <p>نوصل طلباتك بسرعة البرق إلى أي مكان — بأمان تام وبأسعار مناسبة. ثق بنا لتوصيل ما يهمك.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/962793204777" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        تواصل عبر واتساب
+      </a>
+      <a href="#services" class="btn btn-secondary">
+        اعرف أكثر ↓
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>+500</h3>
+        <p>طلب موصّل</p>
+      </div>
+      <div class="stat-item">
+        <h3>98%</h3>
+        <p>رضا العملاء</p>
+      </div>
+      <div class="stat-item">
+        <h3>24/7</h3>
+        <p>خدمة مستمرة</p>
+      </div>
+      <div class="stat-item">
+        <h3>⚡ سريع</h3>
+        <p>توصيل في نفس اليوم</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="section-title">
+      <h2>خدماتنا</h2>
+      <p>نقدم حلول توصيل متكاملة تناسب احتياجاتك</p>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon icon-red">📦</div>
+        <h3>توصيل الطرود</h3>
+        <p>نوصل طرودك وبضائعك بأمان تام من الباب إلى الباب في أسرع وقت ممكن.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-blue">🍕</div>
+        <h3>توصيل الطعام</h3>
+        <p>طعامك المفضل من المطاعم يصل إليك ساخناً وطازجاً في أقل من ساعة.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-green">🛍️</div>
+        <h3>توصيل المشتريات</h3>
+        <p>تسوّق من متاجرك المفضلة ونحن نتكفل بإيصال مشترياتك إليك.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-yellow">📄</div>
+        <h3>توصيل الوثائق</h3>
+        <p>نضمن وصول مستنداتك وأوراقك الرسمية بسرية تامة وفي الوقت المحدد.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-section" id="how">
+    <div class="section-title">
+      <h2>كيف نعمل؟</h2>
+      <p>ثلاث خطوات بسيطة للحصول على خدمتك</p>
+      <div class="divider"></div>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-number">١</div>
+        <h3>تواصل معنا</h3>
+        <p>أرسل لنا رسالة عبر واتساب وأخبرنا بتفاصيل طلبك.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">٢</div>
+        <h3>حدد التفاصيل</h3>
+        <p>أخبرنا بعنوان الاستلام والتسليم والوقت المناسب لك.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">٣</div>
+        <h3>استلم طلبك</h3>
+        <p>سنوصل طلبك إليك بأمان وفي الوقت المتفق عليه.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>هل أنت جاهز لتجربة التوصيل السريع؟</h2>
+    <p>تواصل معنا الآن عبر واتساب وسنكون بخدمتك فوراً</p>
+    <a href="https://wa.me/962793204777" class="btn btn-white" target="_blank" rel="noopener noreferrer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      ابدأ الآن عبر واتساب
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">⚡ الوميض لتوصيل الطلبات</div>
+    <p>© 2026 الوميض لتوصيل الطلبات — جميع الحقوق محفوظة</p>
+    <p style="margin-top:0.5rem;">
+      <a href="https://wa.me/962793204777">📞 تواصل عبر واتساب</a>
+    </p>
+  </footer>
+
+</body>
+</html>
