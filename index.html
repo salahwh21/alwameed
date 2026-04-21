@@ -283,6 +283,22 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
 .uc-whats{color:#25D366}
 .uc-social{display:flex;justify-content:center;gap:10px;margin-top:10px}
 
+
+/* MOBILE NAV */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+.hamburger span{display:block;height:2px;width:24px;background:var(--color-text);border-radius:2px;transition:all 0.25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.3)}
+.mobile-nav-overlay.open{display:block}
+.mobile-nav-panel{position:fixed;top:0;right:0;height:100%;width:220px;background:var(--color-surface);box-shadow:var(--shadow-lg);z-index:100;padding:var(--space-6) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2);transform:translateX(100%);transition:transform 0.25s cubic-bezier(0.16,1,0.3,1)}
+.mobile-nav-panel.open{transform:translateX(0)}
+.mobile-nav-panel .nav-link{font-size:var(--text-sm);padding:var(--space-3) var(--space-4);border-radius:var(--radius-lg);white-space:nowrap;display:block}
+@media(max-width:540px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
 </style>
 </head>
 <body>
@@ -299,11 +315,22 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
       <a href="#" class="nav-link" onclick="showPage('pricing',this);return false">الأسعار</a>
       <a href="#" class="nav-link" onclick="showPage('order',this);return false">اطلب الآن</a>
     </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+      <span></span><span></span><span></span>
+    </button>
     <button class="theme-btn" data-theme-toggle aria-label="تبديل الثيم">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
     </button>
   </div>
 </header>
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+<nav class="mobile-nav-panel" id="mobileNavPanel">
+  <a href="#" class="nav-link active" onclick="showPage('home',this);return false">الرئيسية</a>
+  <a href="#" class="nav-link" onclick="showPage('about',this);return false">من نحن</a>
+  <a href="#" class="nav-link" onclick="showPage('pricing',this);return false">الأسعار</a>
+  <a href="#" class="nav-link" onclick="showPage('order',this);return false">اطلب الآن</a>
+</nav>
+
 
 <!-- HOME -->
 <div id="page-home" class="page active">
@@ -413,43 +440,50 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
     <h2>الأسعار والباقات</h2>
     <p class="pricing-sub">باقات مرنة تناسب كل حجم عمل — تواصل معنا للحصول على عرض مخصص</p>
     <div class="pricing-grid">
+      <!-- طلب واحد -->
       <div class="pricing-card">
-        <div class="pricing-name">باقة الطلب الواحد</div>
-        <div class="pricing-price">حسب الطلب <span>/ طرد</span></div>
-        <div class="pricing-desc">مناسبة للشركات الصغيرة أو للتجربة الأولى</div>
+        <div class="pricing-name">🚚 طلب واحد</div>
+        <div class="pricing-price">3 د.أ <span>/ داخل عمان</span></div>
+        <div class="pricing-desc">بدون اشتراك — ادفع فقط عند الإرسال</div>
         <ul class="pricing-features">
+          <li><span class="check">✓</span> داخل عمّان: 3 دينار / طرد</li>
+          <li><span class="check">✓</span> باقي المحافظات: 4 دينار / طرد</li>
           <li><span class="check">✓</span> توصيل خلال 24 ساعة</li>
           <li><span class="check">✓</span> تتبع لحظي</li>
-          <li><span class="check">✓</span> تغليف احترافي</li>
           <li><span class="check">✓</span> تغطية جميع المحافظات</li>
         </ul>
-        <a href="https://wa.me/962793204777?text=أريد%20الاستفسار%20عن%20سعر%20الطرد%20الواحد" target="_blank" rel="noopener noreferrer" class="pricing-btn">استفسر عن السعر</a>
+        <a href="https://wa.me/962793204777?text=أريد%20الاستفسار%20عن%20خدمة%20الطلب%20الواحد" target="_blank" rel="noopener noreferrer" class="pricing-btn">ابدأ الآن</a>
       </div>
+      <!-- مشترك -->
       <div class="pricing-card featured">
         <div class="pricing-badge">⭐ الأكثر طلباً</div>
-        <div class="pricing-name">باقة الشركات الشهرية</div>
-        <div class="pricing-price">سعر مخصص <span>/ شهر</span></div>
-        <div class="pricing-desc">للشركات التي تحتاج توصيل منتظم ومضمون</div>
+        <div class="pricing-name">⭐ مشترك وميض</div>
+        <div class="pricing-price">2 د.أ <span>/ داخل عمان</span></div>
+        <div class="pricing-desc">للمتاجر النشطة — وفّر أكثر مع كل طرد</div>
         <ul class="pricing-features">
-          <li><span class="check">✓</span> عدد طرود غير محدود</li>
+          <li><span class="check">✓</span> داخل عمّان: 2 دينار / طرد</li>
+          <li><span class="check">✓</span> باقي المحافظات: 3 دينار / طرد</li>
           <li><span class="check">✓</span> أولوية في التوصيل</li>
           <li><span class="check">✓</span> مدير حساب مخصص</li>
-          <li><span class="check">✓</span> تقارير شهرية مفصلة</li>
-          <li><span class="check">✓</span> خصومات تصاعدية</li>
+          <li><span class="check">✓</span> تقارير دورية مفصلة</li>
         </ul>
-        <a href="https://wa.me/962793204777?text=أريد%20الاستفسار%20عن%20باقة%20الشركات%20الشهرية" target="_blank" rel="noopener noreferrer" class="pricing-btn">احصل على عرض خاص</a>
+        <a href="https://wa.me/962793204777?text=أريد%20الاشتراك%20في%20باقة%20مشترك%20وميض" target="_blank" rel="noopener noreferrer" class="pricing-btn">اشترك الآن</a>
       </div>
+      <!-- شريك وميض -->
       <div class="pricing-card">
-        <div class="pricing-name">باقة المشاريع الكبرى</div>
-        <div class="pricing-price">تفاوضي <span>/ عقد</span></div>
-        <div class="pricing-desc">للشركات ذات الحجم الكبير والاحتياجات الخاصة</div>
+        <div class="pricing-badge" style="background:var(--color-primary)">👑 حصري</div>
+        <div class="pricing-name">👑 شريك وميض</div>
+        <div class="pricing-price">سعر خاص <span>/ طرد</span></div>
+        <div class="pricing-desc">للمتاجر والمشاريع ذات الحجم التوصيلي العالي — سعر مخصص حسب نشاطك</div>
         <ul class="pricing-features">
-          <li><span class="check">✓</span> كل مميزات الباقة الشهرية</li>
-          <li><span class="check">✓</span> توصيل في نفس اليوم (بعض المناطق)</li>
-          <li><span class="check">✓</span> عقد SLA مضمون</li>
-          <li><span class="check">✓</span> تكامل مع أنظمتكم</li>
+          <li><span class="check">✓</span> أفضل سعر توصيل داخل عمّان</li>
+          <li><span class="check">✓</span> أفضل سعر لباقي المحافظات</li>
+          <li><span class="check">✓</span> خدمة VIP مخصصة</li>
+          <li><span class="check">✓</span> توصيل في نفس اليوم (متاح)</li>
+          <li><span class="check">✓</span> دعم على مدار الساعة</li>
         </ul>
-        <a href="https://wa.me/962793204777?text=أريد%20الاستفسار%20عن%20باقة%20المشاريع%20الكبرى" target="_blank" rel="noopener noreferrer" class="pricing-btn">تواصل معنا</a>
+        <a href="#" onclick="showPage('order', document.querySelector('[onclick*=\'order\']'));return false" class="pricing-btn" style="background:var(--color-primary);margin-bottom:var(--space-2)">🚀 اطلب الآن</a>
+        <a href="https://wa.me/962793204777?text=أريد%20الاستفسار%20عن%20باقة%20شريك%20وميض" target="_blank" rel="noopener noreferrer" class="pricing-btn" style="background:transparent;border:2px solid var(--color-primary);color:var(--color-primary);margin-top:var(--space-2)">تواصل معنا</a>
       </div>
     </div>
   </div>
@@ -464,7 +498,7 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
       <form id="orderForm" onsubmit="submitForm(event)">
         <div class="form-row">
           <div class="form-group">
-            <label for="company">اسم الشركة *</label>
+            <label for="company">اسم الشركة أو المتجر أو الصفحة *</label>
             <input type="text" id="company" placeholder="مثال: شركة النور" required>
           </div>
           <div class="form-group">
@@ -481,10 +515,7 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
             <label for="city">المحافظة *</label>
             <select id="city" required>
               <option value="">اختر المحافظة</option>
-              <option>عمّان</option><option>إربد</option><option>الزرقاء</option>
-              <option>البلقاء</option><option>مادبا</option><option>الكرك</option>
-              <option>الطفيلة</option><option>معان</option><option>العقبة</option>
-              <option>جرش</option><option>عجلون</option><option>المفرق</option>
+              <option value="عمّان" selected>عمّان</option>
             </select>
           </div>
         </div>
@@ -496,12 +527,7 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
               <option>51 - 200 طرود</option><option>أكثر من 200 طرد</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="service">نوع الخدمة</label>
-            <select id="service">
-              <option>طلب واحد</option><option>باقة شهرية</option><option>مشاريع كبرى</option>
-            </select>
-          </div>
+
         </div>
         <div class="form-group">
           <label for="notes">ملاحظات إضافية</label>
@@ -701,6 +727,18 @@ function checkAdminRoute(){
 window.addEventListener('load', checkAdminRoute);
 window.addEventListener('hashchange', checkAdminRoute);
 
+
+// Hamburger menu
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNavPanel');
+const mobileOverlay = document.getElementById('mobileNavOverlay');
+function openMobileNav(){hamburgerBtn.classList.add('open');mobileNav.classList.add('open');mobileOverlay.classList.add('open')}
+function closeMobileNav(){hamburgerBtn.classList.remove('open');mobileNav.classList.remove('open');mobileOverlay.classList.remove('open')}
+if(hamburgerBtn){
+  hamburgerBtn.addEventListener('click',()=>hamburgerBtn.classList.contains('open')?closeMobileNav():openMobileNav());
+  mobileOverlay.addEventListener('click',closeMobileNav);
+  document.querySelectorAll('#mobileNavPanel .nav-link').forEach(a=>a.addEventListener('click',closeMobileNav));
+}
 </script>
 
 </body>
