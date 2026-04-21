@@ -58,18 +58,19 @@ a{text-decoration:none;color:inherit}
 header{position:sticky;top:0;z-index:100;background:var(--color-surface);
   border-bottom:1px solid var(--color-border);box-shadow:var(--shadow-sm)}
 .header-inner{max-width:700px;margin:0 auto;padding:var(--space-3) var(--space-4);
-  display:flex;align-items:center;justify-content:space-between;gap:var(--space-3)}
-.logo-header{display:flex;align-items:center;gap:var(--space-2);flex-shrink:0}
+  display:flex;flex-direction:column;align-items:center;gap:var(--space-2);position:relative}
+.logo-header{display:flex;flex-direction:column;align-items:center;gap:var(--space-1);flex-shrink:0}
 .logo-header img{width:52px;height:52px;object-fit:contain}
-.logo-header-text{font-size:var(--text-sm);font-weight:900;color:var(--color-primary);line-height:1.2}
+.logo-header-text{font-size:var(--text-sm);font-weight:900;color:var(--color-primary);line-height:1.2;text-align:center}
 .logo-header-text small{display:block;font-size:var(--text-xs);color:var(--color-text-muted);font-weight:400}
-.nav-links{display:flex;gap:var(--space-1);flex-wrap:wrap}
+.nav-links{display:flex;gap:var(--space-1);flex-wrap:wrap;justify-content:center}
 .nav-link{font-size:var(--text-xs);font-weight:700;color:var(--color-text-muted);
   padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);white-space:nowrap}
 .nav-link:hover,.nav-link.active{background:var(--color-primary-light);color:var(--color-primary)}
 .theme-btn{width:34px;height:34px;border-radius:var(--radius-full);
   background:var(--color-surface-2);border:1px solid var(--color-border);
-  display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);flex-shrink:0}
+  display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);flex-shrink:0;
+  position:absolute;left:var(--space-4);top:var(--space-3)}
 .theme-btn:hover{background:var(--color-primary-light);color:var(--color-primary)}
 
 /* PAGES */
@@ -296,8 +297,7 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
 .mobile-nav-panel.open{transform:translateX(0)}
 .mobile-nav-panel .nav-link{font-size:var(--text-sm);padding:var(--space-3) var(--space-4);border-radius:var(--radius-lg);white-space:nowrap;display:block}
 @media(max-width:540px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
+  .hamburger{display:none}
 }
 </style>
 </head>
@@ -311,26 +311,14 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
     </div>
     <nav class="nav-links">
       <a href="#" class="nav-link active" onclick="showPage('home',this);return false">الرئيسية</a>
-      <a href="#" class="nav-link" onclick="showPage('about',this);return false">من نحن</a>
       <a href="#" class="nav-link" onclick="showPage('pricing',this);return false">الأسعار</a>
       <a href="#" class="nav-link" onclick="showPage('order',this);return false">اطلب الآن</a>
     </nav>
-    <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
-      <span></span><span></span><span></span>
-    </button>
     <button class="theme-btn" data-theme-toggle aria-label="تبديل الثيم">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
     </button>
   </div>
 </header>
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-<nav class="mobile-nav-panel" id="mobileNavPanel">
-  <a href="#" class="nav-link active" onclick="showPage('home',this);return false">الرئيسية</a>
-  <a href="#" class="nav-link" onclick="showPage('about',this);return false">من نحن</a>
-  <a href="#" class="nav-link" onclick="showPage('pricing',this);return false">الأسعار</a>
-  <a href="#" class="nav-link" onclick="showPage('order',this);return false">اطلب الآن</a>
-</nav>
-
 
 <!-- HOME -->
 <div id="page-home" class="page active">
@@ -344,7 +332,30 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
     <div class="stat-card"><div class="stat-num">🛡️</div><div class="stat-label">شركة مرخصة</div></div>
   </div>
   <div class="links">
-    <p class="section-label">تواصل معنا</p>
+    <p class="section-label">خدماتنا</p>
+    <a href="#" onclick="showPage('order',null);return false" class="link-card accent">
+      <div class="link-icon">📦</div>
+      <div class="link-info"><div class="link-title">اطلب خدمة التوصيل</div><div class="link-desc">أملأ نموذج الطلب وسنتواصل معك فوراً</div></div>
+      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <a href="#" onclick="showPage('pricing',null);return false" class="link-card accent">
+      <div class="link-icon">💰</div>
+      <div class="link-info"><div class="link-title">الأسعار والباقات</div><div class="link-desc">باقات مخصصة لحجم عملك</div></div>
+      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <a href="https://wa.me/962793204777?text=ما%20هي%20مناطق%20التغطية%20لديكم؟" target="_blank" rel="noopener noreferrer" class="link-card">
+      <div class="link-icon">🗺️</div>
+      <div class="link-info"><div class="link-title">مناطق التغطية</div><div class="link-desc">تغطية واسعة في جميع المحافظات</div></div>
+      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <a href="#" onclick="showPage('about',null);return false" class="link-card">
+      <div class="link-icon">🏢</div>
+      <div class="link-info"><div class="link-title">من نحن</div><div class="link-desc">تعرف على شركة الوميض وقصتنا</div></div>
+      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+  </div>
+  <div class="share-section">
+    <p class="section-label" style="margin-bottom:var(--space-3)">تواصل معنا</p>
     <div class="social-row" id="socialRow">
       <a class="social-icon-btn facebook" href="https://www.facebook.com/wameed.delivery" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/></svg>
@@ -352,8 +363,8 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
       <a class="social-icon-btn instagram" href="https://www.instagram.com/wameed.delivery/" target="_blank" rel="noopener noreferrer" aria-label="إنستغرام">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm8.88 1.12a1.13 1.13 0 1 1 0 2.26 1.13 1.13 0 0 1 0-2.26zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5z"/></svg>
       </a>
-    </div><div class="section-label" style="padding-top:var(--space-4)">تواصل معنا</div>
-    <div class="contact-options">
+    </div>
+    <div class="contact-options" style="margin-top:var(--space-3)">
       <div class="contact-card">
         <div class="contact-top">
           <div>
@@ -379,30 +390,7 @@ footer{text-align:center;padding:var(--space-6) var(--space-4);
         </div>
       </div>
     </div>
-    <p class="section-label" style="margin-top:var(--space-4)">خدماتنا</p>
-    <a href="#" onclick="showPage('order',null);return false" class="link-card accent">
-      <div class="link-icon">📦</div>
-      <div class="link-info"><div class="link-title">اطلب خدمة التوصيل</div><div class="link-desc">أملأ نموذج الطلب وسنتواصل معك فوراً</div></div>
-      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-    </a>
-    <a href="#" onclick="showPage('pricing',null);return false" class="link-card accent">
-      <div class="link-icon">💰</div>
-      <div class="link-info"><div class="link-title">الأسعار والباقات</div><div class="link-desc">باقات مخصصة لحجم عملك</div></div>
-      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-    </a>
-    <a href="https://wa.me/962793204777?text=ما%20هي%20مناطق%20التغطية%20لديكم؟" target="_blank" rel="noopener noreferrer" class="link-card">
-      <div class="link-icon">🗺️</div>
-      <div class="link-info"><div class="link-title">مناطق التغطية</div><div class="link-desc">تغطية واسعة في جميع المحافظات</div></div>
-      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-    </a>
-    <a href="#" onclick="showPage('about',null);return false" class="link-card">
-      <div class="link-icon">🏢</div>
-      <div class="link-info"><div class="link-title">من نحن</div><div class="link-desc">تعرف على شركة الوميض وقصتنا</div></div>
-      <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-    </a>
-  </div>
-  <div class="share-section">
-    <h3>شارك صفحتنا</h3>
+    <h3 style="margin-top:var(--space-6)">شارك صفحتنا</h3>
     <div class="share-btns">
       <button class="share-btn" onclick="shareWA()">
         <svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.824.738 5.476 2.027 7.782L0 32l8.418-2.199A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0z"/></svg>
@@ -607,7 +595,24 @@ function showPage(name, el) {
   document.getElementById('page-' + name).classList.add('active');
   if(el) el.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+  history.pushState({page: name}, '');
 }
+
+window.addEventListener('popstate', function(e) {
+  var page = (e.state && e.state.page) ? e.state.page : 'home';
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  var pageEl = document.getElementById('page-' + page);
+  if(pageEl) pageEl.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(function(link) {
+    if(link.getAttribute('onclick') && link.getAttribute('onclick').indexOf("'" + page + "'") !== -1) {
+      link.classList.add('active');
+    }
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+history.replaceState({page: 'home'}, '');
 function submitForm(e) {
   e.preventDefault();
   const company=document.getElementById('company').value;
@@ -707,8 +712,7 @@ function applySavedState(){
   qs('#page-about .about-wrap p').textContent=s.aboutText||qs('#page-about .about-wrap p').textContent; if(s.wa && qs('#socialRow .whatsapp')) qs('#socialRow .whatsapp').href=s.wa; if(s.facebook && qs('#socialRow .facebook')) qs('#socialRow .facebook').href=s.facebook; if(s.instagram && qs('#socialRow .instagram')) qs('#socialRow .instagram').href=s.instagram;
 }
 function exportCurrentPage(){
-  const html='<!DOCTYPE html>
-'+document.documentElement.outerHTML;
+  const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
   const blob=new Blob([html],{type:'text/html;charset=utf-8'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='alwameed-admin-editable.html'; a.click(); URL.revokeObjectURL(a.href);
 }
@@ -725,20 +729,8 @@ function checkAdminRoute(){
   }
 }
 window.addEventListener('load', checkAdminRoute);
-window.addEventListener('hashchange', checkAdminRoute);
 
 
-// Hamburger menu
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const mobileNav = document.getElementById('mobileNavPanel');
-const mobileOverlay = document.getElementById('mobileNavOverlay');
-function openMobileNav(){hamburgerBtn.classList.add('open');mobileNav.classList.add('open');mobileOverlay.classList.add('open')}
-function closeMobileNav(){hamburgerBtn.classList.remove('open');mobileNav.classList.remove('open');mobileOverlay.classList.remove('open')}
-if(hamburgerBtn){
-  hamburgerBtn.addEventListener('click',()=>hamburgerBtn.classList.contains('open')?closeMobileNav():openMobileNav());
-  mobileOverlay.addEventListener('click',closeMobileNav);
-  document.querySelectorAll('#mobileNavPanel .nav-link').forEach(a=>a.addEventListener('click',closeMobileNav));
-}
 </script>
 
 </body>
